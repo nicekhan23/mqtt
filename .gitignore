@@ -1,0 +1,86 @@
+# ============================================================
+# ESP-IDF Project .gitignore
+# ============================================================
+
+# === Build Artifacts ===
+/build/
+sdkconfig.old
+sdkconfig.defaults.old
+
+# === CMake & Ninja ===
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.ninja
+*.cmake
+/.idea/
+.cache/
+*.log
+
+# === ESP-IDF Python Virtual Env ===
+/venv/
+/.venv/
+/env/
+/.env/
+
+# === ESP-IDF Tools ===
+/components/esp-idf/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# === Flash Images & Binaries ===
+*.bin
+*.elf
+*.map
+*.hex
+*.ld
+*.a
+*.o
+*.d
+*.S
+
+# === Temporary or Local Files ===
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# === IDE / Editor Config ===
+.vscode/
+.idea/
+*.code-workspace
+.settings/
+*.project
+*.cproject
+
+# === ESP-IDF Specific User Config ===
+/sdkconfig
+/local_build/
+*.bld
+esp-idf-tools-setup*
+
+# === Logs and Dumps ===
+*.log
+*.trace
+*.core
+*.dmp
+
+# === Testing and Misc ===
+/pytest_cache/
+/tests/__pycache__/
+coverage/
+*.gcno
+*.gcda
+
+# === Other ===
+/tools/idf_monitor_output.txt
+/secrets.txt
+
+.clangd
