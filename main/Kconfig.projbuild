@@ -4,4 +4,22 @@ menu "Example Configuration"
         bool "whether set MAC address of target AP or not"
         default y
 
+    config MQTT_BROKER_URI
+        string "MQTT Broker URL"
+        default "mqtt://193.6.56.12:51883"
+        help
+            "URI of the MQTT broker to connect to."
+        
+    config MQTT_USERNAME
+        string "MQTT Username"
+        default "ptemik"
+        help
+            "Username for MQTT broker authentication."
+
+    config MQTT_PASSWORD
+        string "MQTT Password"
+        default "esp32"
+        help
+            "Password for MQTT broker authentication."
+
 endmenu
