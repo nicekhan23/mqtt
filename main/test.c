@@ -3,6 +3,7 @@
 #include "esp_log.h"
 #include "test.h"
 #include "mqtt.h"
+#include "ntp.h"
 
 #define LOG_LEVEL_LOCAL ESP_LOG_DEBUG
 #define TOPIC "/ptemik/darkhan"
@@ -16,6 +17,12 @@ static void tsk_test(void *p){
 
     for(;;) {
         if (!mq_is_connected()) {
+            struct tm timeinfo;
+            if (ntp_get_time(NULL, &timeinfo) == pdPASS) {
+                ESP_LOGI(TAG, "NTP time obtained: %s", asctime(&timeinfo));
+            } else {
+                ESP_LOGW(TAG, "NTP time not obtained yet");
+            }
             char msg[64];
             ESP_LOGI(TAG, "Publishing message from device %s, count: %d", mac, i);
             snprintf(msg, sizeof(msg), "{\"hello\": \" from %s, i:%d\"}", mac, i++);

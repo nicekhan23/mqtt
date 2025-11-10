@@ -7,6 +7,7 @@
 #include "wifi_smart.h"
 #include "mqtt.h"
 #include "test.h"
+#include "ntp.h"
 
 void app_main(void)
 {
@@ -15,4 +16,5 @@ void app_main(void)
     configASSERT(con_init());
     configASSERT(mq_init());
     configASSERT(test_init());
+    configASSERT(ntp_init());
 }
