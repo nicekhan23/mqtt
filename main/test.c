@@ -15,17 +15,18 @@ static void tsk_test(void *p){
     int i = 0;
 
     for(;;) {
-        while (mq_is_connected()) {
-        char msg[64];
-        ESP_LOGI(TAG, "Publishing message from device %s, count: %d", mac, i);
-        snprintf(msg, sizeof(msg), "{\"hello\": \" from %s, i:%d\"}", mac, i++);
-        mq_send(TOPIC, msg);
-        vTaskDelay(pdMS_TO_TICKS(500));
+        if (!mq_is_connected()) {
+            char msg[64];
+            ESP_LOGI(TAG, "Publishing message from device %s, count: %d", mac, i);
+            snprintf(msg, sizeof(msg), "{\"hello\": \" from %s, i:%d\"}", mac, i++);
+            mq_send(TOPIC, msg);
+            vTaskDelay(pdMS_TO_TICKS(5000));
         }
-    } 
+        vTaskDelay(pdMS_TO_TICKS(100));
+    }
 }
 
 BaseType_t test_init() {
- esp_log_level_set(TAG,LOG_LEVEL_LOCAL); 
+ esp_log_level_set(TAG,LOG_LEVEL_LOCAL);
  return xTaskCreate(tsk_test, "test", 4096, NULL, uxTaskPriorityGet(NULL), &tsk_handle);
 }
